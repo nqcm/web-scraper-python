@@ -6,6 +6,7 @@ import json
 import os
 from bs4 import BeautifulSoup
 import requests
+from urllib.parse import urljoin
 
 def scrape(url, format_, type_):
     try:
@@ -22,10 +23,12 @@ def _fetch_images(soup, base_url):
     images = []
     for img in soup.findAll('img'):
         src = img.get('src')
+        print(src)
         if src.startswith('http'):
             img_url = src
         else:
-            img_url = ('{base_url}/{src}'.format(base_url=base_url, src=src))
+            img_url=urljoin(base_url,src)
+            #img_url = ('{base_url}{src}'.format(base_url=base_url, src=src))
         name = img_url.split('/')[-1]
         images.append(dict(name=name, url=img_url))
     return images
@@ -52,7 +55,7 @@ def _save(images, format_):
 
 def _save_images(images):
     for img in images:
-        print (img['url'])
+        #print (img['url'])
         img_data = requests.get(img['url']).content
         with open(img['name'], 'wb') as f:
             f.write(img_data)
