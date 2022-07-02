@@ -7,8 +7,7 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: ls -al
-      - run: ls -al ${{ github.workspace }}/test
+      - run: pip install -r requirements.txt
       - run: cd ${{ github.workspace }}/test && ./test.sh
   Package:
     runs-on: ubuntu-latest
