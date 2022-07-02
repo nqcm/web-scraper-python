@@ -8,7 +8,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: ls -al ${{ github.workspace }}/test
-      #- run: .${{ github.workspace }}/test/test.sh
+      - run: .${{ github.workspace }}/test/test.sh
   Package:
     runs-on: ubuntu-latest
     steps:
