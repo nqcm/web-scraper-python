@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: ls ${{ github.workspace }}/test
+      - run: ls -al ${{ github.workspace }}/test
       #- run: .${{ github.workspace }}/test/test.sh
   Package:
     runs-on: ubuntu-latest
@@ -15,7 +15,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: python ${{ github.workspace }}/setup.py build
-  Docker:
+  Build_docker_image:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
