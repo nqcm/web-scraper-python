@@ -1,20 +1,17 @@
 name: GitHub Actions Demo
 on: [push]
-defaults:
-  run:
-    working-directory: ${{ github.workspace }}
 
 jobs:
   Test:
     runs-on: ubuntu-latest
     steps:
-      - run: ls
-      - run: ./test/test.sh
-  Package:
-    runs-on: ubuntu-latest
-    steps:
-      - run: python setup.sh build
-  Docker:
-    runs-on: ubuntu-latest
-    steps:
-      - run: docker build . -t ${{ github.sha }}
+      - run: ls ${{ github.workspace }}
+#      - run: ./test/test.sh
+#  Package:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - run: python setup.sh build
+#  Docker:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - run: docker build . -t ${{ github.sha }}
