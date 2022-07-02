@@ -1,0 +1,13 @@
+name: GitHub Actions Demo
+on: [push]
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./test/test.sh
+  Package:
+    steps:
+      - run: python setup.sh build
+  Docker:
+    steps:
+      - run: docker build . -t ${{ github.sha }}
