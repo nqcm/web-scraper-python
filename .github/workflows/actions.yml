@@ -14,8 +14,10 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: python ${{ github.workspace }}/setup.sh build
-#  Docker:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - run: docker build . -t ${{ github.sha }}
+      - run: python ${{ github.workspace }}/setup.py build
+  Docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: docker build ${{ github.workspace }} -t ${{ github.sha }}
