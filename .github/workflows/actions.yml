@@ -6,8 +6,10 @@ jobs:
     steps:
       - run: ./test/test.sh
   Package:
+    runs-on: ubuntu-latest
     steps:
       - run: python setup.sh build
   Docker:
+    runs-on: ubuntu-latest
     steps:
       - run: docker build . -t ${{ github.sha }}
