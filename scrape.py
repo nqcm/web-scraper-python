@@ -22,6 +22,9 @@ def _fetch_images(soup, base_url):
     images = []
     for img in soup.findAll('img'):
         src = img.get('src')
+        if src and src.startswith('data:'):
+            continue
+
         img_url = ('{base_url}/{src}'.format(base_url=base_url, src=src))
         name = img_url.split('/')[-1]
         images.append(dict(name=name, url=img_url))
