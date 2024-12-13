@@ -33,7 +33,12 @@ def _fetch_images(soup, base_url):
 def _filter_images(images, type_):
     if type_ == 'all':
         return images
-    ext_map = {'png': ['.png'], 'jpg': ['.jpg', '.jpeg'],}
+    ext_map = {
+        'png': ['.png'],
+        'jpg': ['.jpg', '.jpeg'],
+        'svg': ['.svg'],
+        'webp': ['.webp']
+    }
     return [img for img in images if _matches_extension(img['name'], ext_map[type_])]
 
 def _matches_extension(filename, extension_list):
@@ -68,7 +73,7 @@ def _save_json(images):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description = "Scrape a webpage.")
-    parser.add_argument('-t', '--type', choices=['all', 'png', 'jpg'], default='all', help='The image type we want to scrape.')
+    parser.add_argument('-t', '--type', choices=['all', 'png', 'jpg', 'webp', 'svg'], default='all', help='The image type we want to scrape.')
     parser.add_argument('-f', '--format', choices=['img', 'json'], default='img', help='The format images are saved to.')
     parser.add_argument('url', help='The URL we want to scrape for images.')
     args = parser.parse_args()
